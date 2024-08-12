@@ -12,7 +12,7 @@
             padding-top: 25px;
         }
         .form-inputs {
-            text-align: center;
+            text-align: left;
             width: 20%;
             margin: 5px;
             padding: 5px;
@@ -34,6 +34,9 @@
         }
         hr{
             border-top:1px dashed black;
+        }
+        #display-data{
+            text-align: left;
         }
     </style>
 </head>
@@ -58,10 +61,25 @@
             if(Date.parse(input)){
                 let inputdate=new Date(input);
                 let currentdate=new Date();
+                let milSecDiff=parseInt(currentdate.getTime())-parseInt(inputdate.getTime());
+                let secDiff=Math.floor(milSecDiff/1000);
+                let minDiff=Math.floor(secDiff/60);
+                let hrDiff=Math.floor(minDiff/60);
+                let dayDiff=Math.floor(hrDiff/24);
                 document.getElementById("display-data").innerHTML=`
                 Input Value:${input}<br>
                 Formated Date:${inputdate}<br>
-                Current Date:${currentdate}`;
+                Current Date:${currentdate}<br>
+                Day Difference:${dayDiff}<br>
+                Hour Difference:${hrDiff}<br>
+                Minute Difference:${minDiff}<br>
+                Second Difference:${secDiff}<br>
+                Millisecond Difference:${milSecDiff}<br>
+                `;
+            }
+            else{
+                document.getElementById("display-data").innerHTML=`
+                Select valid Date`;
             }
             console.log(input);
         }
